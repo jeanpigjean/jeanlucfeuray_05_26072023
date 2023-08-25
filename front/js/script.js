@@ -3,6 +3,9 @@ fetch('http://localhost:3000/api/products')//je récupére les données
 .then(data => data.json())//je les appel data et les converties en jason
 .then(data =>{//j'appel mon objet card et lui aplique la fonction qui suit
 
+console.log(data);
+
+
 // creation d'une boucle for (let card of card){let article = new article(json.article);}//création de la card
 for (let i = 0; i < data.length; i++) { 
             let productLink = document.createElement("a");
