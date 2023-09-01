@@ -73,7 +73,7 @@ else {
   alert('Votre commande est ajouter au panier.');
 }
 
-// achat object
+// achat object contruire 
 let tarray = {
   idlocal: idProduct, 
   //imagelocal:product.imageUrl, 
@@ -107,14 +107,77 @@ let produitLocalStorage = JSON.parse(localStorage.getItem("panier"));
 
 
  if (produitLocalStorage != null ) {
-produitLocalStorage.push(tarray);
+//console.log("pas vide")
+//produitLocalStorage.push(tarray);
+//localStorage.setItem("panier", JSON.stringify(produitLocalStorage));
+//console.log("pas vide")
+
+for (let i = 0; i < produitLocalStorage.length; i++) {
+
+
+//variable commande et stock
+let mon_panier_id = produitLocalStorage[i].idlocal;
+let mon_panier_color = produitLocalStorage[i].cololocal;
+let mon_panier_qt = produitLocalStorage[i].qtlocal;
+
+let ma_commande_id = tarray.idlocal;
+let ma_commande_color = tarray.colorlocal;
+let ma_commande_qt = tarray.qtlocal;
+
+
+
+
+
+if (mon_panier_id === ma_commande_id) {
+
+if (mon_panier_color === ma_commande_color)) {
+//article panier +1
+let add = ma_commande_qt++;
+
+//produitLocalStorage.push(tarray);//tableau ou clé valeur    [id produit push sous tableau des declinaison]
+//localStorage.setItem("panier", JSON.stringify(produitLocalStorage));
+
+} else {
+//new article meme id new color 1
+//produitLocalStorage = [];
+produitLocalStorage.push(tarray);//tableau ou clé valeur    [id produit push sous tableau des declinaison]
 localStorage.setItem("panier", JSON.stringify(produitLocalStorage));
-console.log("pas vide")
+}  
+
+
+
+} else {
+//new article
+//produitLocalStorage = [];
+produitLocalStorage.push(tarray);//tableau ou clé valeur    [id produit push sous tableau des declinaison]
+localStorage.setItem("panier", JSON.stringify(produitLocalStorage));
+}
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 } else {
 produitLocalStorage = [];
-produitLocalStorage.push(tarray);
+produitLocalStorage.push(tarray);//tableau ou clé valeur    [id produit push sous tableau des declinaison]
 localStorage.setItem("panier", JSON.stringify(produitLocalStorage));
-console.log("vide")
+//console.log("vide")
 } 
 
 

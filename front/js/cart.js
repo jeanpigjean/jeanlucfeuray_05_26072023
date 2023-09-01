@@ -18,8 +18,11 @@ let tata = data[0]["colors"][1];
 console.log(tata);*/
 
 
-//recuperer un id ok
+//récuperer mon panier
 let monPanier = JSON.parse(localStorage.getItem("panier"));
+
+
+
 console.log(monPanier); // affichera le array
 
 let combien_article = monPanier.length;//combien de kanap 2
@@ -27,7 +30,32 @@ console.log(combien_article + " " + "article dans le panier");//combien de kanap
 
 console.log("id de mon panier" + " " + monPanier[0]["idlocal"]);
 
+
+
+
+
+
+
+
+
+
+
+
 console.log("couleur" + " " + monPanier[0]["colorlocal"]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let myColor = monPanier[0]["colorlocal"];
 console.log("ma couleur" + " " + myColor);
 console.log("quantité" + " " + monPanier[0]["qtlocal"]);
