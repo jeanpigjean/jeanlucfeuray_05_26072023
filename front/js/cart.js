@@ -1,4 +1,4 @@
-//867 lignes -------  157 arrivé 
+//867 lignes -------  152 arrivé 
 //=============================== modele html ====================================================//
 fetch('http://localhost:3000/api/products')//je récupére les données
   .then(data => data.json())//je les appel data et les converties en jason
@@ -8,15 +8,15 @@ fetch('http://localhost:3000/api/products')//je récupére les données
 
     let totalPx = [];
     let totalQant = [];
-    console.log(totalPx);
-    console.log(totalQant);
+    //console.log(totalPx);
+    //console.log(totalQant);
 
     for (const [key, value] of Object.entries(produitLocalStorage)) {
 
       fetch("http://localhost:3000/api/products/" + key)
         .then((response) => response.json())
         .then(product => {
-          console.log(product.imageUrl);//adresse image
+          //console.log(product.imageUrl);//adresse image
 
           for (const [cle, valeur] of Object.entries(value)) {
             //console.log(`${cle}: ${valeur}`);
@@ -62,10 +62,15 @@ fetch('http://localhost:3000/api/products')//je récupére les données
             descript_p.innerHTML = `${cle}`;       //"Vert";
             div_description.appendChild(descript_p);
             let descript_2p = document.createElement("p");
+            
+            
+            
+        
+
+
             descript_2p.innerHTML = `${valeur}` * prix;//*`${valeur}`= qt
             div_description.appendChild(descript_2p);
-            //console.log(product.price);
-
+            
             let div_settings = document.createElement("div");//
             div_settings.classList.add("cart__item__content__settings");
             div_content.appendChild(div_settings);
@@ -80,7 +85,7 @@ fetch('http://localhost:3000/api/products')//je récupére les données
             quanti_input.name = "itemQuantity";// name="itemQuantity"
             quanti_input.min = 1;//min max 1 100
             quanti_input.max = 100;//min max 1 100
-            quanti_input.value = `${valeur}`;//value 42
+            quanti_input.value = `${valeur}`;
             cart_quantiti.appendChild(quanti_input);
             //console.log(quanti_input.value);//
 
@@ -91,9 +96,32 @@ fetch('http://localhost:3000/api/products')//je récupére les données
             //bouton p class deleteItem
             let cart_delet = document.createElement("p");
             cart_delet.classList.add("deleteItem");
+            cart_delet.dataset.id = product._id;//valeur product id
+            cart_delet.dataset.color = `${cle}`;//valeur product id
+            //console.log(product);
             cart_delet.innerHTML = "Supprimer";
+            cart_delet.addEventListener("click", function(e){supprimerArticlePanier(e)});
             cart_supp.appendChild(cart_delet);
 
+      
+            //renomer fonction
+          function supprimerArticlePanier(e) {
+          let panier = JSON.parse(localStorage.getItem("panier"));
+/*{"id": "107fb5b75607497b96722bda5b504926",
+  "color": "Blue"*/
+            console.log(panier);
+            delete panier[e.target.dataset.id][e.target.dataset.color];
+            console.log(panier);
+            localStorage.setItem("panier", JSON.stringify(panier));
+            //closest
+            let article = e.target.closest("article");
+            article.remove();
+            
+            //le 05 10 2023 13h30
+            sumpx.remove();//suprimer qt article html ok
+            }
+          
+            //refactoriser
             let nbpx = parseInt(descript_2p.innerHTML);
             totalPx.push(nbpx);
             let sumpx = 0;
@@ -115,43 +143,11 @@ fetch('http://localhost:3000/api/products')//je récupére les données
             let totalPrix = document.getElementById("totalPrice");
             totalPrix.innerHTML = sumpx;
 
+
           }//2 for
         });//fetch
     }//1 for
   });//fetch
-
-//===================================================================
-// REGEX OK
-/*
-  let  docprenom = document.getElementById("firstName").value;//saisie
-  let  docnom = document.getElementById("lastName").value;
-  let  docadresse = document.getElementById("address").value;
-  let  docville = document.getElementById("city").value;
-  let  docemail = document.getElementById("email").value;
-
-  let  docprenomerr = document.getElementById("firstNameErrorMsg");//renvoie
-  let  docnomerr = document.getElementById("lastNameErrorMsg");
-  let  docadresseerr = document.getElementById("addressErrorMsg");
-  let  docvilleerr = document.getElementById("cityErrorMsg");
-  let  docemailerr = document.getElementById("emailErrorMsg");
-
-  let expprenom = /^[^0-9]+$/;//tout sauf chiffres       tilde &#126; | ~
-  let expadresse = /^[A-Za-z0-9 -éèçïëî]+$/;//"^[^0-9]+$"
-  let expville = /^[A-Za-z -]+$/;
-  let expemail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;//
-
-console.log(expprenom.test(docprenom));//true false
-console.log(expnom.test(docnom));//true false
-console.log(expadresse.test(docadresse));//true false
-console.log(expville.test(docville));//true false
-console.log(expemail.test(docemail));//true false
-
-
-if (expprenom.test(docprenom) === true) {} else {docprenomerr.innerHTML = errors;}
-if (expnom.test(docnom) === true) {} else {docnomerr.innerHTML = errors;}
-if (expadresse.test(docadresse) === true) {} else {docadresseerr.innerHTML = errors;}
-if (expville.test(docville) === true) {} else {docvilleerr.innerHTML = errors;}
-if (expemail.test(docemail) === true) {} else {docemailerr.innerHTML = errors;}
-*/
-//======================= FIN REGEX OK=============================================
-//=================================================================================
+  //probleme modif input
+  //faire envoi
+  //controler ligne 121 supprimer
