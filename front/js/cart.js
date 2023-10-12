@@ -84,20 +84,20 @@ fetch('http://localhost:3000/api/products')//je récupére les données
             /*====================================
             ========================================*/
             quanti_input.addEventListener("change",function(event){
-            console.log(this.value);//ok 5
-            console.log("change",this.value);//ok
-            console.log("change",event,this.value);//faire la fonction ligne 86
+            //console.log(this.value);//ok 5
+            //console.log("change",this.value);//ok
+            //console.log("change",event,this.value);//faire la fonction ligne 86
             //console.log("");
             // 1 new value
             //descriptTotalPrix.innerHTML = `${valeur}` * prix;
             //let prix = product.price;
             //
-            console.log(this.value);//ok 5
-            console.log(prix);//ok 1849
+            //console.log(this.value);//ok 5
+            //console.log(prix);//ok 1849
             let changementValeurInput =this.value;
             let changementArticle = prix * changementValeurInput;//new
-            console.log(changementArticle);//9245
-            console.log(descriptTotalPrix.innerHTML);//7396
+            //console.log(changementArticle);//9245
+            //console.log(descriptTotalPrix.innerHTML);//7396
             descriptTotalPrix.innerHTML =changementArticle;//ok 9245
 
 
@@ -110,17 +110,16 @@ fetch('http://localhost:3000/api/products')//je récupére les données
             totalPrix.innerHTML = sommeToutLesArticle;*/
             
             
-            let toto = "allo";
-            let titi = "oui";
             
-            console.log(SommeQuantite);4
-            console.log(sommeToutLesArticle);//7396
+            
+            console.log(SommeQuantite);//4 ancien
+            console.log(sommeToutLesArticle);//7396 ancien
 
             //SommeQuantite = this.value;//5
             //sommeToutLesArticle = changementArticle;
             totalQt.innerHTML = this.value;//5
             totalPrix.innerHTML = descriptTotalPrix.innerHTML;
-
+              
               //modifier local storage
               console.log(produitLocalStorage);
 
@@ -226,18 +225,89 @@ console.log(data);
     email: string
      },products:[]
     }*/
-    
+
+
+
+    //<span id="orderId"><!-- 65431343444684674 --></span>
+   //let orderconfirmer = document.get
+
+//==================================
+
+
+
+
+
+
+
+
 //====================================================================================
+//<input type="submit" value="Commander !" id="order">
+let commander = document.getElementById("order").addEventListener("click", validerAchat);
+function validerAchat() {
+  /* REGEX OK
+  
+    let  docprenom = document.getElementById("firstName").value;//saisie
+    let  docnom = document.getElementById("lastName").value;
+    let  docadresse = document.getElementById("address").value;
+    let  docville = document.getElementById("city").value;
+    let  docemail = document.getElementById("email").value;
     
+    let  docprenomerr = document.getElementById("firstNameErrorMsg");//renvoie
+    let  docnomerr = document.getElementById("lastNameErrorMsg");
+    let  docadresseerr = document.getElementById("addressErrorMsg");
+    let  docvilleerr = document.getElementById("cityErrorMsg");
+    let  docemailerr = document.getElementById("emailErrorMsg");
     
-    
-    
-    
-    
-    
-    
-    
-    
+    let expprenom = /^[^0-9]+$/;//tout sauf chiffres       tilde &#126; | ~
+    let expadresse = /^[A-Za-z0-9 -éèçïëî]+$/;//"^[^0-9]+$"
+    let expville = /^[A-Za-z -]+$/;
+    let expemail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/;//
+  
+  console.log(expprenom.test(docprenom));//true false
+  console.log(expnom.test(docnom));//true false
+  console.log(expadresse.test(docadresse));//true false
+  console.log(expville.test(docville));//true false
+  console.log(expemail.test(docemail));//true false
+  
+  
+  if (expprenom.test(docprenom) === true) {} else {docprenomerr.innerHTML = errors;}
+  if (expnom.test(docnom) === true) {} else {docnomerr.innerHTML = errors;}
+  if (expadresse.test(docadresse) === true) {} else {docadresseerr.innerHTML = errors;}
+  if (expville.test(docville) === true) {} else {docvilleerr.innerHTML = errors;}
+  if (expemail.test(docemail) === true) {} else {docemailerr.innerHTML = errors;}
+  */
+
+  let premiernom = "ertgzqeg";
+  let dernierprenom = "dfgbd";
+  let adresse = "fgs sdfsq sdfqsd sdfsdf";
+  let ville = "sdfsd";
+  let mail = "fdgzsd@dfsdf.com";
+
+    let order = {contact: {
+      firstName: premiernom,
+      lastName: dernierprenom,
+      address: adresse,
+      city: ville,
+      email: mail
+    },
+
+    products: ["107fb5b75607497b96722bda5b504926"]
+
+  };
+  
+  console.log(order)
+    //<-- array of product _id
+    fetch('http://localhost:3000/api/order',{
+      //on met la code methode + body
+      method: "POST",
+      body: '{"contact": "product"}',
+    });
+
+
+//const aller = new URL("http://127.0.0.1:5500/front/html/confirmation.html?id=65431343444684674");
+//window.location.href = aller;
+}
+
     
     
     

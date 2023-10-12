@@ -1,3 +1,24 @@
+let orderconfirmer = document.getElementById("orderId");
+  orderconfirmer.innerHTML = "65431343444684674";  
+/*
+console.log(URLSearchParams);
+
+console.log(URLSearchParams.toString("key1")); // "foo=bar&baz=bar"
+console.log(URLSearchParams.value); // true
+console.log(URLSearchParams.get("value")); // "bar"*/
+
+
+//console.log(URLSearchParams.get("id"));
+
+let params = new URL(document.location).searchParams;
+let named = params.get("id"); // is the string "Jonathan Smith".
+//let age = parseInt(params.get("age")); // is the number 18
+console.log(named);
+
+
+
+
+
 /*
 La page Confirmation
 Sur cette page, l'utilisateur doit voir s’afficher son numéro de commande. Il faudra veiller à
